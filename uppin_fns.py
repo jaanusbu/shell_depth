@@ -121,7 +121,7 @@ def xyz_freeze_core(input_data, shell_depth = 0.5, Me_atom = 'Me', o_file_name= 
     core_length = np_size - shell_depth
     for i in range(2,len(input_data)):
         # As atomtype is removed beforehand assign the atomtypes to match with original data
-        if  input_data[i][0] == 1:
+        if  input_data[i][0] == 2:
             atom = 'O'
         else:
             atom = Me_atom

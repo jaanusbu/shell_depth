@@ -91,16 +91,18 @@ def xyz2POSCAR(xyz_file_name, out_file_name='POSCAR',move_COM=True):
     
 # Finding need for moving the Center-Of-Mass
     if sqrt(COM[0]**2+COM[1]**2+COM[2]**2) != sqrt((i_x/2)**2+(i_y/2)**2+(i_z/2)**2):
+#        print(COM[0],COM[1],COM[2],'for box:',i_x/2,i_y/2,i_z/2)
         mover.append((i_x/2) - COM[0])
         mover.append((i_y/2) - COM[1])
         mover.append((i_z/2) - COM[2])
+#        print(mover)
         
 # Write Cooridination part 
     for i in get_total_ele(xyz_file):
         if len(mover) != 0 and move_COM:
 #            print("ver1")
             for j in get_coordinations(i):
-                poscar.write('%s %s %s %s %s %s\n' %(float(j[1])-mover[0], float(j[2])-mover[1], float(j[3])-mover[2], j[5], j[6], j[7]))
+                poscar.write('%s %s %s %s %s %s\n' %(float(j[1])+mover[0], float(j[2])+mover[1], float(j[3])+mover[2], j[5], j[6], j[7]))
         else:
 #            print("ver2")
             for j in get_coordinations(i):
