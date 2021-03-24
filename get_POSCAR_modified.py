@@ -76,6 +76,7 @@ def xyz2POSCAR(xyz_file_name, out_file_name='POSCAR',move_COM=True):
         poscar.write(str(get_num_ele(i))+' ')
 
 # Write Cartesian line 
+    poscar.write('\nSelective Dynamics')
     poscar.write('\nCartesian\n')
 
 # Finding the Center-Of-Mass
