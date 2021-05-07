@@ -51,6 +51,18 @@ def gen_data(file_name,bond_dist):
     
     return file_info,round(max_dist,2)
 
+def coord_file(input_data, particle1='Me', particle2='O', o_file_name='coord.xyz'):
+    f = open(o_file_name, "w")
+    f.write(input_data[0][0]+'\n')
+    f.write("Coordination file with \"Atom_type X Y Z coord_nr\"\n")
+    for i in range(2,len(input_data)):
+        if input_data[i][0] == 1:
+            atom_type = particle1
+        else:
+            atom_type = particle2
+        to_write = f'{atom_type} {input_data[i][1]} {input_data[i][2]} {input_data[i][3]} {input_data[i][5]}'
+        f.write(to_write+'\n')
+
 def gen_analysis_data(distances, input_data, atom_type='all'):
     max_dist = max([input_data[i][-2] for i in range(2,len(input_data))])
     if atom_type == 'Me':
